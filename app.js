@@ -54,15 +54,15 @@ app.listen(port);
 function stringtophonenum(string) {
   var arrayOfNumbers = []
   try{
-
-  string.toString().split(',').forEach( str=>{
-  var number = phoneUtil.parse(str, 'CA')
-  if(phoneUtil.isValidNumber(number)){
-      arrayOfNumbers.push(phoneUtil.format(number, PNF.NATIONAL))
-    }
+    
+    string.toString().split(',').forEach( str=>{
+    var number = phoneUtil.parse(str, 'CA')
+    if(phoneUtil.isValidNumber(number)){
+        arrayOfNumbers.push(phoneUtil.format(number, PNF.NATIONAL))
+      }
   })
   }catch(error){
-        // console.log(error)
+
   }
 
   arrayOfNumbers = removeDuplicates(arrayOfNumbers);
