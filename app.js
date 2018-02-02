@@ -52,15 +52,21 @@ app.listen(port);
 
 
 function stringtophonenum(string) {
-  var returnedNumber;
-  var phoneNumberArray = [];
+  var arrayOfNumbers = []
+  try{
 
-  returnedNumber = phoneUtil.parse(string, 'CA');
-  var formattedNumber = phoneUtil.format(returnedNumber, PNF.INTERNATIONAL);
+  string.toString().split(',').forEach( str=>{
+  var number = phoneUtil.parse(str, 'CA')
+  if(phoneUtil.isValidNumber(number)){
+      arrayOfNumbers.push(phoneUtil.format(number, PNF.NATIONAL))
+    }
+  })
+  }catch(error){
+        // console.log(error)
+  }
 
-  phoneNumberArray = removeDuplicates(phoneNumberArray);
-
-  return phoneNumberArray;
+  arrayOfNumbers = removeDuplicates(arrayOfNumbers);
+  return arrayOfNumbers;
 }
 
 function removeDuplicates(arr){
@@ -72,4 +78,3 @@ function removeDuplicates(arr){
     }
     return unique_array
 }
-
